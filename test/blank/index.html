@@ -49,7 +49,7 @@
                             <p class="test_time">
                                 <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">00:20</b>
                             </p>
-                            <font><input type="button" name="test_jiaojuan" value="交卷"></font>
+                            <font><input type="button" name="test_jiaojuan" value="交卷" onclick="check()"></font>
                         </div>
     </div>
                         <div class="test_content">
@@ -238,6 +238,14 @@
 
             });
         });
+        function check(){
+            var val=confirm("确认提交么","");
+            if (!val)
+                return ;
+            var submitanswer=me1.answerMathField.latex();
+            if (submitanswer=="\\frac{\\sqrt{2}}{2}")
+                alert("111");
+    }
     </script>
 
 
