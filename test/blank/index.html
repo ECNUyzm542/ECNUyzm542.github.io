@@ -67,7 +67,7 @@
 
                                 <li id="qu_0_0">
                                     <div class="test_content_nr_tt">
-                                        <i>1</i><span>(4分)</span><img id="1" src=""><img src="./img/1/pic8.png"><b class="icon iconfont">&#xe881;</b>
+                                        <i>1</i><span>(6分)</span><img id="1" src="./img/1.png"><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -76,7 +76,7 @@
 
                                 <li id="qu_0_1">
                                     <div class="test_content_nr_tt">
-                                        <i>2</i><span>(4分)</span><font>在营销系统中查询客户有无欠费、余额及抄表数据接待客户时应做到哪些最基本的礼仪？</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>2</i><span>(6分)</span><img id="2" src="./img/2.png"><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -86,7 +86,7 @@
 
                                 <li id="qu_0_2">
                                     <div class="test_content_nr_tt">
-                                        <i>3</i><span>(4分)</span><font>请在下列选项中选择正确进入电力营销系统网址</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>3</i><span>(6分)</span><img id="3" src="./img/3.png"><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -96,7 +96,7 @@
 
                                 <li id="qu_0_3">
                                     <div class="test_content_nr_tt">
-                                        <i>4</i><span>(4分)</span><font>如何在电力营销系统查询出客户的是否有余额</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>4</i><span>(6分)</span><img id="4" src="./img/4.png"><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -106,7 +106,7 @@
 
                                 <li id="qu_0_4">
                                     <div class="test_content_nr_tt">
-                                        <i>5</i><span>(4分)</span><font>检查、使用万用表,用万用表测量一小型加工厂线电压为351V，请问其电压是否合格（  ）</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>5</i><span>(4分)</span><img id="5" src="./img/5.png"><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -116,7 +116,7 @@
 
                                 <li id="qu_0_5">
                                     <div class="test_content_nr_tt">
-                                        <i>6</i><span>(4分)</span><font>检查、使用万用表,用万用表测量一小型加工厂线电压为415V，请问其电压是否合格（  ）</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>6</i><span>(4分)</span><img id="6" src="./img/6.png"><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -126,7 +126,7 @@
 
                                 <li id="qu_0_6">
                                     <div class="test_content_nr_tt">
-                                        <i>7</i><span>(4分)</span><font>万用表使用完毕后，应将转换开关调至（  ）</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>7</i><span>(4分)</span><img id="7" src="./img/7.png"><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -209,7 +209,6 @@
                 me5 = new MathEditor('answer5');
                   me6 = new MathEditor('answer6');
                     me7 = new MathEditor('answer7');
-        document.getElementById("1").src="./img/1/1.png"
         window.jQuery(function ($) {
             "use strict";
 
@@ -242,9 +241,48 @@
             var val=confirm("确认提交么","");
             if (!val)
                 return ;
+            $("div#answer1").css("background-color","initial")
+            $("div#answer2").css("background-color","initial")
+            $("div#answer3").css("background-color","initial")
+            $("div#answer4").css("background-color","initial")
+            $("div#answer5").css("background-color","initial")
+            $("div#answer6").css("background-color","initial")
+            $("div#answer7").css("background-color","initial")
             var submitanswer=me1.answerMathField.latex();
-            if (submitanswer=="\\frac{\\sqrt{2}}{2}")
+            if (submitanswer=="1,\\frac{\\sqrt{2}}{2}i")
                 $("div#answer1").css("background-color","#7FFFD4");
+            else
+                $("div#answer1").css("background-color","#FFC0CB");
+            submitanswer=me2.answerMathField.latex();
+            if (submitanswer=="10,\\frac{105}{32}")
+                $("div#answer2").css("background-color","#7FFFD4");
+            else
+                $("div#answer2").css("background-color","#FFC0CB");
+            submitanswer=me3.answerMathField.latex();
+            if (submitanswer=="-\\frac{9}{8},2")
+                $("div#answer3").css("background-color","#7FFFD4");
+            else
+                $("div#answer3").css("background-color","#FFC0CB");   
+            submitanswer=me4.answerMathField.latex();
+            if (submitanswer=="\\frac{3}{5},\\sqrt{10}")
+                $("div#answer4").css("background-color","#7FFFD4");
+            else
+                $("div#answer4").css("background-color","#FFC0CB"); 
+            submitanswer=me5.answerMathField.latex();
+            if (submitanswer=="30")
+                $("div#answer5").css("background-color","#7FFFD4");
+            else
+                $("div#answer5").css("background-color","#FFC0CB"); 
+            submitanswer=me6.answerMathField.latex();
+            if (submitanswer=="\\left(\\frac{1}{2},1\\right)")
+                $("div#answer6").css("background-color","#7FFFD4");
+            else
+                $("div#answer6").css("background-color","#FFC0CB"); 
+                submitanswer=me7.answerMathField.latex();
+            if (submitanswer=="\\left[1,4\\right)")
+                $("div#answer7").css("background-color","#7FFFD4");
+            else
+                $("div#answer7").css("background-color","#FFC0CB");      
     }
     </script>
 
