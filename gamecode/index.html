@@ -216,15 +216,15 @@
 	<script src="js/lightGallery.js"></script>
 	<script type="text/javascript">
 		var num=0;
-		var ban=new Array(11);
-		for (var i=0;i<11;i++)
+		var ban=new Array(12);
+		for (var i=0;i<12;i++)
 			ban[i]=1;
 		var pick=new Array(4);
 		function choose(i){
 			if (num>7)
 				return ;
 			if (num<=3){
-				ban[i]=0;
+				ban[i-1]=0;
 				var heroid="hero"+i
 				document.getElementById(heroid).style.opacity="0.3";
 				num++;
@@ -242,14 +242,15 @@
 					document.getElementById("9").innerHTML="选择";
 					document.getElementById("10").innerHTML="选择";
 					document.getElementById("11").innerHTML="选择";
+					document.getElementById("12").innerHTML="选择";
 					document.getElementById("step").innerHTML="选人阶段"
 
 				}
 			}
 			else{
-				if (ban[i]==1){
+				if (ban[i-1]==1){
 					pick[num-4]=i;
-					ban[i]=0;
+					ban[i-1]=0;
 					var heroid="hero"+i;
 					if (num==4)
 						document.getElementById(heroid).style.border='4px red solid'
