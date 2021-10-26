@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<meta charset="utf-8">
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<style type="text/css">
+	div#attck{
+		width: 700px;
+		height: 700px;
+	}
+		div#recover{
+		width: 700px;
+		height: 700px;
+	}
+</style>
+<body>
+<div id="attck"></div>
+<div id="recover"></div>
+</body>
+<script type="text/javascript">
+			function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  decodeURIComponent(r[2]); return null;
+}
+var attack=new Array(4);
+var recover=new Array(4);
+for (var i=1;i<5;i++)
+{
+	attack[i-1]=GetQueryString("num"+i);
+	var j=i+4;
+	recover[i-1]=GetQueryString("num"+j);
+}
+var maxattack=Math.max(attack[0],attack[1],attack[2],attack[3])
+var maxrecover=Math.max(recover[0],recover[1],recover[2],recover[3]);
+var attackpercent=new Array(4);
+var recoverpercent=new Array(4);
+for (var p=0;p<4;p++)
+{
+	attackpercent[p]=attack[p]/maxattack*100;
+	recoverpercent[p]=recover[p]/maxrecover*100;
+}
+var myChart = echarts.init(document.getElementById("attck"));
+var myColor = ['#81E7ED'] //内柱状图颜色
+    var max = 100 + 2*0.4;
+ var option = {
+     grid: [
+         {
+         left: '8%',
+         top: '12%',
+         right: '5%',
+         bottom: '8%',
+         containLabel: true
+     },
+     {
+         left: '10%',
+         top: '12%',
+         right: '5%',
+         bottom: '8%',
+         containLabel: true
+     }
+         ],
+     xAxis: [{
+         max:max,
+         show: false
+     }],
+     yAxis: [{
+         axisTick: 'none',
+         axisLine: 'none',
+         offset: '27',
+         axisLabel: {
+             textStyle: {
+                 color: '#000000', //y轴字体颜色
+                 fontSize: '16'
+             }
+         },
+         data: ['玩家1', '玩家2', '玩家3', '玩家4']
+     }, {
+         axisTick: 'none',
+         axisLine: 'none',
+         show: false,
+         axisLabel: {
+             textStyle: {
+                 color: '#ffffff',
+                 fontSize: '16'
+             }
+         },
+         data: [1, 1, 1, 1]
+     }, {
+
+         axisLine: {
+             lineStyle: {
+                 color: 'rgba(0,0,0,0)' //y轴线颜色
+             }
+         },
+         data: []
+     },
+     {  //设置柱状图右边参数 
+					        show: true,
+					        inverse: true,
+					        data: [],
+					        axisLine: {
+					            show: false
+					        },
+					        splitLine: {
+					            show: false
+					        },
+					        axisTick: {
+					            show: false
+					        }}
+     ],
+     series: [
+         
+     {
+         name: '条',
+         type: 'bar',
+         stack: 'b',
+         yAxisIndex: 0,
+         data: attackpercent,
+         label: {
+             normal: {
+                 show: false,
+                 position: 'right',
+                 distance: 10,
+                 formatter: function(param) {
+                     return param.value + '%'
+                 },
+                 textStyle: {
+                     color: '#ffffff',
+                     fontSize: '16'
+                 }
+             }
+         },
+         barWidth: 21,
+         itemStyle: {
+             normal: {
+                    color: new echarts.graphic.LinearGradient(
+                      1, 0, 0, 0,
+                    [
+                        {offset: 0, color: '#FF0000'},   
+                        {offset: 1, color: '#FF7744'}
+                    ]
+                 ),
+
+                  barBorderRadius:[100, 100, 100, 100],
+             }
+         },
+         z: 2
+     }, { //背景灰框
+         name: '白框',
+         type: 'bar',
+         yAxisIndex: 1,
+         barGap: '-100%',//设置-100% 则表示灰色柱状图与红色柱状图重合
+         data: [100,100,100,100],
+         barWidth: 21,
+         itemStyle: {
+             normal: {
+                 color: '#DDDDDD',
+                 barBorderRadius:[100, 100, 100, 100],
+             },
+             
+         },
+         z: 1  // 设置维度越高这表示覆盖低的
+     },
+     {
+         name: '外框',
+         type: 'bar',
+         yAxisIndex: 2,
+         barGap: '-100%',
+         data: [100, 100, 100, 100],
+         barWidth: 23,
+         label: {
+             normal: {
+                 show: true,
+                 position: 'right',
+                 distance: 10,
+                 color:'#000000',
+                formatter: function(data) {
+                  return attack[data.dataIndex];
+                },
+             }
+         },
+            itemStyle: {
+             normal: {
+                 color: '#DDDDDD',
+                  barBorderRadius:[100, 100, 100, 100],
+             }
+         },
+         
+         z: 0
+     }
+     ]
+ }
+
+			myChart.setOption( option );
+
+
+var myChart1 = echarts.init(document.getElementById("recover"));
+var myColor = ['#81E7ED'] //内柱状图颜色
+ var option = {
+     grid: [
+         {
+         left: '8%',
+         top: '12%',
+         right: '5%',
+         bottom: '8%',
+         containLabel: true
+     },
+     {
+         left: '10%',
+         top: '12%',
+         right: '5%',
+         bottom: '8%',
+         containLabel: true
+     }
+         ],
+     xAxis: [{
+         max:max,
+         show: false
+     }],
+     yAxis: [{
+         axisTick: 'none',
+         axisLine: 'none',
+         offset: '27',
+         axisLabel: {
+             textStyle: {
+                 color: '#000000', //y轴字体颜色
+                 fontSize: '16'
+             }
+         },
+         data: ['玩家1', '玩家2', '玩家3', '玩家4']
+     }, {
+         axisTick: 'none',
+         axisLine: 'none',
+         show: false,
+         axisLabel: {
+             textStyle: {
+                 color: '#ffffff',
+                 fontSize: '16'
+             }
+         },
+         data: [1, 1, 1, 1]
+     }, {
+
+         axisLine: {
+             lineStyle: {
+                 color: 'rgba(0,0,0,0)' //y轴线颜色
+             }
+         },
+         data: []
+     },
+     {  //设置柱状图右边参数 
+					        show: true,
+					        inverse: true,
+					        data: [],
+					        axisLine: {
+					            show: false
+					        },
+					        splitLine: {
+					            show: false
+					        },
+					        axisTick: {
+					            show: false
+					        }}
+     ],
+     series: [
+         
+     {
+         name: '条',
+         type: 'bar',
+         stack: 'b',
+         yAxisIndex: 0,
+         data: recoverpercent,
+         label: {
+             normal: {
+                 show: false,
+                 position: 'right',
+                 distance: 10,
+                 formatter: function(param) {
+                     return param.value + '%'
+                 },
+                 textStyle: {
+                     color: '#ffffff',
+                     fontSize: '16'
+                 }
+             }
+         },
+         barWidth: 21,
+         itemStyle: {
+             normal: {
+                    color: new echarts.graphic.LinearGradient(
+                      1, 0, 0, 0,
+                    [
+                        {offset: 0, color: '#FF0000'},   
+                        {offset: 1, color: '#FF7744'}
+                    ]
+                 ),
+
+                  barBorderRadius:[100, 100, 100, 100],
+             }
+         },
+         z: 2
+     }, { //背景灰框
+         name: '白框',
+         type: 'bar',
+         yAxisIndex: 1,
+         barGap: '-100%',//设置-100% 则表示灰色柱状图与红色柱状图重合
+         data: [100,100,100,100],
+         barWidth: 21,
+         itemStyle: {
+             normal: {
+                 color: '#DDDDDD',
+                 barBorderRadius:[100, 100, 100, 100],
+             },
+             
+         },
+         z: 1  // 设置维度越高这表示覆盖低的
+     },
+     {
+         name: '外框',
+         type: 'bar',
+         yAxisIndex: 2,
+         barGap: '-100%',
+         data: [100, 100, 100, 100],
+         barWidth: 23,
+         label: {
+             normal: {
+                 show: true,
+                 position: 'right',
+                 distance: 10,
+                 color:'#000000',
+                formatter: function(data) {
+                  return recover[data.dataIndex];
+                },
+             }
+         },
+            itemStyle: {
+             normal: {
+                 color: '#DDDDDD',
+                  barBorderRadius:[100, 100, 100, 100],
+             }
+         },
+         
+         z: 0
+     }
+     ]
+ }
+
+			myChart1.setOption( option );
+</script>
+</html>
